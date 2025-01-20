@@ -1,11 +1,13 @@
 # IDE-specific files
-.idea
+.idea/
+.vscode/
 
 # Binary files
 bin/
 
 # Temporary files
 tmp/
+app/
 
 # OS-specific files
 .DS_Store

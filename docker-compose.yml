@@ -1,0 +1,40 @@
+services:
+  app:
+    container_name: ledger
+    build:
+      context: .
+      dockerfile: ./dev.Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=secret
+      - DB_NAME= ledger_db
+    volumes:
+      - ./:/app
+    networks:
+      - ledger_network
+
+  db:
+    container_name: postgres_db
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: ledger_db
+    ports:
+      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ledger_network
+
+networks:
+  ledger_network:
+    driver: bridge
