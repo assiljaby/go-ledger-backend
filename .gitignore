@@ -1,0 +1,22 @@
+# IDE-specific files
+.idea
+
+# Binary files
+bin/
+
+# Temporary files
+tmp/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables file
+.env
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
