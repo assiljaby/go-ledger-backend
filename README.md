@@ -6,7 +6,7 @@
 - [x] Set local env with `Docker`
 - [x] Set linter with `golangci`
 - [x] Set `makefile`
-- [ ] Set Logger in `pkg/` with `slog`
+- [x] Set Logger in `pkg/` with `slog`
 - [ ] Setup echo server in `internal/`
 - [ ] Implement graceful shutdown
 - [ ] Set env/prod environment config
