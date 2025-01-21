@@ -1,7 +1,10 @@
 build:
 	docker compose up --build -d
 
-server:
+lint:
+	golangci-lint run -c .golangci.yml
+
+server: lint
 	@bash scripts/server.sh
 
 stop:
