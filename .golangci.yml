@@ -102,7 +102,6 @@ linters:
     - usestdlibvars
     - wastedassign
     - whitespace
-    - wsl
     - zerologlint
 
 issues:

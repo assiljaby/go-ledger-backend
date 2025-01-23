@@ -4,12 +4,18 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/assiljaby/go-ledger-backend/environments"
 	"github.com/assiljaby/go-ledger-backend/pkg/logger"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
 	logger.StartLogger()
+	if err := godotenv.Load(); err != nil {
+		logger.Info("could not find .env -> loading from os")
+	}
+
 	e := echo.New()
 	e.HidePort = true
 
@@ -19,5 +25,5 @@ func main() {
 		return c.String(http.StatusOK, "Hello, Echo!")
 	})
 
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(environments.GetServer().Port))
 }
