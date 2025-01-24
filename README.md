@@ -7,8 +7,11 @@
 - [x] Set linter with `golangci`
 - [x] Set `makefile`
 - [x] Set Logger in `pkg/` with `slog`
-- [ ] Setup echo server in `internal/`
-- [ ] Implement graceful shutdown
+- [x] Setup echo server in `internal/`
+- [ ] Add middleware
+- [ ] Add Cors
+- [x] Implement graceful shutdown
+- [x] Set environments (init)
 - [ ] Set env/prod environment config
 - [ ] Set up `GORM` in `internal/`
 - [ ] Set db design, models and schemas
