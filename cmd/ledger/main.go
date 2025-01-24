@@ -12,9 +12,8 @@ import (
 
 func main() {
 	logger.StartLogger()
-	if err := godotenv.Load(); err != nil {
-		logger.Info("could not find .env -> loading from os")
-	}
+
+	_ = godotenv.Load()
 
 	e := server.GetInstance()
 

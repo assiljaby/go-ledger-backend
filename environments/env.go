@@ -9,3 +9,7 @@ func getenv(key string, fallback string) string {
 
 	return fallback
 }
+
+func IsDevelopment() bool {
+	return GetServer().Environment == "development"
+}
