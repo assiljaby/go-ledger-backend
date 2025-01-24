@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 
@@ -17,27 +18,30 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-type EchoServer struct {
-	Server *echo.Echo
+var (
+	e    *echo.Echo
+	once sync.Once
+)
+
+func GetInstance() *echo.Echo {
+	once.Do(func() {
+		e = echo.New()
+	})
+
+	return e
 }
 
-func New() *EchoServer {
-	return &EchoServer{
-		Server: echo.New(),
-	}
-}
-
-func (e *EchoServer) Start() {
+func Start(e *echo.Echo) {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
-	e.Server.Logger.SetLevel(log.INFO)
-	e.Server.HideBanner = true
+	e.Logger.SetLevel(log.INFO)
+	e.HideBanner = true
 
 	go func() {
-		err := e.Server.Start(environments.GetServer().Port)
+		err := e.Start(environments.GetServer().Port)
 		if err != nil && !errors.Is(err, http.ErrServerClosed) {
-			e.Server.Logger.Fatal(err)
+			e.Logger.Fatal(err)
 		}
 	}()
 

@@ -16,13 +16,13 @@ func main() {
 		logger.Info("could not find .env -> loading from os")
 	}
 
-	e := server.New()
+	e := server.GetInstance()
 
-	e.Server.GET("/", func(c echo.Context) error {
+	e.GET("/", func(c echo.Context) error {
 		logger.Info("Hello", slog.String("gitgud", "scrublord"))
 
 		return c.String(http.StatusOK, "Hello, Echo!")
 	})
 
-	e.Start()
+	server.Start(e)
 }
