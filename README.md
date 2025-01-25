@@ -10,6 +10,7 @@
 - [x] Setup echo server in `internal/`
 - [ ] Add middleware
 - [ ] Add Cors
+- [ ] Add db migration
 - [x] Implement graceful shutdown
 - [x] Set environments (init)
 - [ ] Set env/prod environment config
